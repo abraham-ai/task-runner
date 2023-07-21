@@ -83,8 +83,8 @@ const main = async () => {
   await client.connect();
   console.log('Connected to the database');
   
-  const characters = client.db('eden-stg').collection('characters');
-  const scenarios = client.db('eden-stg').collection('scenarios');
+  // const characters = client.db('eden-dev').collection('characters');
+  const scenarios = client.db('eden-dev').collection('scenarios');
 
   try {
     while (true) {

@@ -97,7 +97,7 @@ const main = async () => {
         console.log(scenario);
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 30000));
+      await new Promise((resolve) => setTimeout(resolve, 300000));
     }
 
   } catch (e) {

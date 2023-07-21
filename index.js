@@ -89,7 +89,10 @@ const main = async () => {
   try {
     while (true) {
       
-      const pendingScenarios = await scenarios.find({status: "complete"}).toArray();
+      const pendingScenarios = await scenarios.find({status: "pending"}).toArray();
+
+      console.log(pendingScenarios);
+      console.log("------")
       for (const scenario of pendingScenarios) {
         console.log(scenario);
       }

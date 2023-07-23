@@ -150,16 +150,16 @@ const main = async () => {
       const pendingScenarios = await scenarios.find({status: "pending"}).toArray();
       for (const scenario of pendingScenarios) {
         console.log("=====================================")
-        const character = await characters.findOne({_id: scenario.character});
         console.log(scenario);
-        const {answer, outputFile} = await generateMonologue(character, scenario.prompt);
-        scenarios.updateOne({_id: scenario._id}, {$set: {
-          status: "complete", 
-          answer: answer,
-          output: outputFile
-        }});
+        //const character = await characters.findOne({_id: scenario.character});
+        // const {answer, outputFile} = await generateMonologue(character, scenario.prompt);
+        // scenarios.updateOne({_id: scenario._id}, {$set: {
+        //   status: "complete", 
+        //   answer: answer,
+        //   output: outputFile
+        // }});
       }
-      await new Promise((resolve) => setTimeout(resolve, 30000));
+      await new Promise((resolve) => setTimeout(resolve, 300000));
     }
   } catch (e) {
     console.error(e);

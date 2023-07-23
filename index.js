@@ -135,11 +135,9 @@ const generateMonologue = async (character, prompt) => {
   const w2lResult = await pollTask(w2l_result.taskId);
   const outputFile = w2lResult.output.files[0];
 
-  console.log("finished job");
-  console.log(w2lResult);
-
   return {answer, outputFile};
 }
+
 
 const main = async () => {
   await client.connect();
@@ -151,15 +149,15 @@ const main = async () => {
       for (const scenario of pendingScenarios) {
         console.log("=====================================")
         console.log(scenario);
-        //const character = await characters.findOne({_id: scenario.character});
-        // const {answer, outputFile} = await generateMonologue(character, scenario.prompt);
-        // scenarios.updateOne({_id: scenario._id}, {$set: {
-        //   status: "complete", 
-        //   answer: answer,
-        //   output: outputFile
-        // }});
+        const character = await characters.findOne({_id: scenario.character});
+        const {answer, outputFile} = await generateMonologue(character, scenario.prompt);
+        scenarios.updateOne({_id: scenario._id}, {$set: {
+          status: "complete", 
+          answer: answer,
+          output: outputFile
+        }});
       }
-      await new Promise((resolve) => setTimeout(resolve, 300000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
     }
   } catch (e) {
     console.error(e);
